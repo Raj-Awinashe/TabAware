@@ -78,7 +78,7 @@ TabAware/
 Just run:
 
 
-launch.bat
+launch.bat Requires NODE20
 
 
 This will:
