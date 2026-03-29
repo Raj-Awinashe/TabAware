@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>TabAware</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        width: 320px;
+        font-family: Arial, Helvetica, sans-serif;
+        background: #f8fafc;
+        color: #0f172a;
+      }
+
+      .wrap {
+        padding: 16px;
+      }
+
+      .header {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 16px;
+      }
+
+      .logo {
+        width: 36px;
+        height: 36px;
+        border-radius: 12px;
+        background: #0f172a;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+        font-weight: bold;
+      }
+
+      h1 {
+        margin: 0;
+        font-size: 18px;
+      }
+
+      .sub {
+        margin-top: 2px;
+        font-size: 12px;
+        color: #64748b;
+      }
+
+      .card {
+        background: white;
+        border: 1px solid #e2e8f0;
+        border-radius: 16px;
+        padding: 12px;
+        margin-bottom: 12px;
+      }
+
+      .row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+      }
+
+      .label {
+        font-size: 13px;
+        color: #475569;
+      }
+
+      .value {
+        font-size: 13px;
+        font-weight: 600;
+        color: #0f172a;
+        text-align: right;
+      }
+
+      .status {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 13px;
+        font-weight: 600;
+      }
+
+      .dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 999px;
+      }
+
+      .ok {
+        background: #22c55e;
+      }
+
+      .bad {
+        background: #ef4444;
+      }
+
+      .muted {
+        color: #64748b;
+        font-size: 12px;
+      }
+
+      .btn {
+        width: 100%;
+        border: 0;
+        border-radius: 12px;
+        padding: 10px 12px;
+        background: #0f172a;
+        color: white;
+        font-weight: 600;
+        cursor: pointer;
+      }
+
+      .btn:hover {
+        background: #1e293b;
+      }
+
+      .small {
+        margin-top: 6px;
+        font-size: 12px;
+        color: #64748b;
+        line-height: 1.4;
+      }
+
+      .truncate {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        max-width: 150px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="header">
+        <div class="logo">F</div>
+        <div>
+          <h1>TabAware</h1>
+          <div class="sub">Extension status</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="row">
+          <div class="label">Backend</div>
+          <div id="backendStatus" class="status">
+            <span id="backendDot" class="dot bad"></span>
+            <span id="backendText">Checking...</span>
+          </div>
+        </div>
+        <div id="lastCheck" class="small">Last checked: -</div>
+      </div>
+
+      <div class="card">
+        <div class="row">
+          <div class="label">Last event</div>
+          <div id="lastEventTime" class="value">-</div>
+        </div>
+        <div id="lastEventDomain" class="small truncate">No events yet</div>
+      </div>
+
+      <button id="refreshBtn" class="btn">Refresh status</button>
+
+      <div class="small">
+        Make sure your TabAware backend is running on <strong>localhost:3000</strong>.
+      </div>
+    </div>
+
+    <script src="popup.js"></script>
+  </body>
+</html>

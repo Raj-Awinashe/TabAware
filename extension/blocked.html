@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Blocked by TabAware</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      font-family: Arial, Helvetica, sans-serif;
+      background: radial-gradient(circle at top left, #1e293b 0%, #0f172a 45%, #020617 100%);
+      color: #e2e8f0;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 760px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.22);
+      border-radius: 24px;
+      padding: 32px;
+      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.4);
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: rgba(239, 68, 68, 0.14);
+      color: #fca5a5;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      margin: 0 0 12px;
+      font-size: 34px;
+      line-height: 1.1;
+      color: white;
+    }
+
+    .subtext {
+      margin: 0;
+      font-size: 17px;
+      line-height: 1.6;
+      color: #cbd5e1;
+    }
+
+    .panel {
+      margin-top: 24px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(148, 163, 184, 0.15);
+      border-radius: 18px;
+      padding: 18px;
+    }
+
+    .panel-title {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #94a3b8;
+      margin-bottom: 10px;
+    }
+
+    .domain {
+      font-size: 24px;
+      font-weight: 700;
+      color: white;
+      word-break: break-word;
+    }
+
+    .url {
+      margin-top: 10px;
+      font-size: 13px;
+      line-height: 1.5;
+      color: #94a3b8;
+      word-break: break-all;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    button,
+    a {
+      border: none;
+      border-radius: 14px;
+      padding: 13px 18px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .primary {
+      background: white;
+      color: #0f172a;
+    }
+
+    .secondary {
+      background: rgba(255, 255, 255, 0.08);
+      color: white;
+      border: 1px solid rgba(148, 163, 184, 0.2);
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="eyebrow">Blocked by TabAware</div>
+    <h1>This site is blocked right now.</h1>
+    <p class="subtext">
+      TabAware redirected this page because it matches a domain on your blocked list.
+    </p>
+
+    <div class="panel">
+      <div class="panel-title">Blocked domain</div>
+      <div id="domainText" class="domain">Unknown domain</div>
+      <div id="urlText" class="url">Original URL not available.</div>
+    </div>
+
+    <div class="actions">
+      <button class="primary" id="goBackBtn">Go Back</button>
+      <a class="secondary" href="http://localhost:3000" target="_blank" rel="noreferrer">
+        Open Dashboard
+      </a>
+    </div>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const domain = params.get("domain") || "Unknown domain";
+    const originalUrl = params.get("url") || "";
+
+    document.getElementById("domainText").textContent = domain;
+    document.getElementById("urlText").textContent =
+      originalUrl || "Original URL not available.";
+
+    document.getElementById("goBackBtn").addEventListener("click", () => {
+      if (history.length > 1) {
+        history.back();
+      } else {
+        window.location.href = "http://localhost:3000";
+      }
+    });
+  </script>
+</body>
+</html>
